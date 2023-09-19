@@ -1,0 +1,3 @@
+pyside2
+opencv-python-headless
+numpy
