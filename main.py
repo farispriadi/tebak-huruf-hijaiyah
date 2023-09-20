@@ -596,6 +596,17 @@ class QuitWidget(QWidget):
     def __init__(self, parent = None):
         super(QuitWidget,self).__init__(parent)
 
+        self.button = QPushButton()
+        self.button.setFixedWidth(500)
+        self.button.setFixedHeight(500)
+        path1 = IMAGES_PATH+"bye.png"
+        pixmap1 = QPixmap(QImage(path1))
+        self.button.setIcon(pixmap1)
+        self.button.setIconSize(pixmap1.rect().size())
+        self.button.setFixedSize(pixmap1.rect().size())
+        self.button.setFlat(True)
+        self.button.setStyleSheet("QPushButton { background-color: transparent }")
+
 
         self.button_keluar = QPushButton()
         path2 = IMAGES_PATH+"keluar.png"
@@ -617,8 +628,13 @@ class QuitWidget(QWidget):
 
 
         self.setLayout(QHBoxLayout())
-        self.layout().addWidget(self.button_keluar)
-        self.layout().addWidget(self.button_kembali)
+
+        self.button_layout = QVBoxLayout()
+        self.button_layout.addWidget(self.button_keluar)
+        self.button_layout.addWidget(self.button_kembali)
+
+        self.layout().addWidget(self.button)
+        self.layout().addLayout(self.button_layout)
         
 
         self.button_keluar.clicked.connect(self.hideOverlayAndQuit)
